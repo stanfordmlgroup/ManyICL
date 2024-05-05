@@ -17,10 +17,9 @@ import vertexai.preview.generative_models as generative_models
 
 
 class GPT4VAPI():
-    def __init__(self, model='gpt-4-turbo-2024-04-09', img_token = '<<IMG>>', TPM = 10000, RPD = 500, seed=66, temperature=0, stats_loc='api_usage.pkl', save_folder = 'GPT4V_response/', detail='low'):
+    def __init__(self, model='gpt-4-turbo-2024-04-09', img_token = '<<IMG>>', seed=66, temperature=0, stats_loc='api_usage.pkl', save_folder = 'GPT4V_response/', detail='low'):
         self.model = model
         self.img_token = img_token
-        self.TPM = TPM
         self.seed = seed
         self.temperature = temperature
         self.save_folder = save_folder
@@ -102,10 +101,9 @@ class GPT4VAPI():
             return response
 
 class GeminiAPI():
-    def __init__(self, model="gemini-1.5-pro-preview-0409", img_token = '<<IMG>>', TPM = 10000, RPM=5, RPD = 500, seed=66, temperature=0, stats_loc='api_usage.pkl', save_folder = 'Gemini1.5_response/', location="us-central1"):
+    def __init__(self, model="gemini-1.5-pro-preview-0409", img_token = '<<IMG>>', RPM=5, seed=66, temperature=0, stats_loc='api_usage.pkl', save_folder = 'Gemini1.5_response/', location="us-central1"):
         self.model = model
         self.img_token = img_token
-        self.TPM = TPM
         self.seed = seed
         self.temperature = temperature
         self.save_folder = save_folder
