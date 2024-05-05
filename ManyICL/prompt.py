@@ -6,17 +6,15 @@ import pickle
 import numpy as np
 from LMM import GPT4VAPI, GeminiAPI
 
-def work(model, num_shot_per_class, location, num_qns_per_round, test_df, demo_df, classes, class_desp, SAVE_FOLDER, file_suffix, exclude, dataset_name, detail='auto'):
+def work(model, num_shot_per_class, location, num_qns_per_round, test_df, demo_df, classes, class_desp, SAVE_FOLDER, dataset_name, detail='auto', file_suffix=''):
     class_to_idx = {class_name: idx for idx, class_name in enumerate(classes)}
     EXP_NAME = f'{dataset_name}_{num_shot_per_class*len(classes)}shot_{model}_{num_qns_per_round}'
     
     if model.startswith('gpt'):
         api = GPT4VAPI(model=model, detail=detail)
-        exclude_list = exclude['GPT']
     else:
         assert model=='Gemini1.5'
         api = GeminiAPI(location=location)
-        exclude_list = exclude['Gemini']
     print(EXP_NAME, f'test size = {len(test_df)}')
     
     
@@ -26,8 +24,6 @@ def work(model, num_shot_per_class, location, num_qns_per_round, test_df, demo_d
         for j in demo_df[demo_df[class_name] == 1].itertuples():
             if num_cases_class == num_shot_per_class:
                 break
-            if j.Index in exclude_list:
-                continue
             demo_examples.append((j.Index, class_desp[class_to_idx[class_name]]))
             num_cases_class += 1
     
