@@ -34,6 +34,7 @@ Prepare two pandas dataframe: one for demonstrating set and one for test set. Yo
 |freeway97.jpeg| 0 | 0 | 1 |
 
 ## Expected directory structure
+```
 ManyICL/
 ├── LMM.py
 ├── dataset
@@ -49,6 +50,7 @@ ManyICL/
 │   └── UCMerced_test_21.pkl
 ├── exp_ucmerced.py
 └── prompt.py
+```
 
 # Configure the prompt
 
