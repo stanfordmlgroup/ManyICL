@@ -28,7 +28,13 @@ Note that you need a Google cloud project for this.
 
 # Configure the prompt
 
+Modify the prompt in prompt.py if needed.
+
 # Run the experiment
+Run the experiment script, and it'll save all the raw responses in UCMerced_21shot_Gemini1.5_1.pkl.
+```bash
+python3 exp_ucmerced.py --num_shot_per_class=1
+```
 
 # Citation
 
