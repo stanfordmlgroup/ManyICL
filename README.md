@@ -13,6 +13,15 @@ $ pip install -r requirements.txt
 ```
 
 # Setup API keys
+## For GPT-series models offered by OpenAI
+1. Get your API key from [here](https://platform.openai.com/api-keys);
+2. Replace the placeholder in LMM.py (Line 28);
+
+## For Gemini-series models offered by Vertex AI
+Note that you need a Google cloud project for this. 
+1. In the Google Cloud console, go to the [Dashboard](https://console.cloud.google.com/home).
+2. Click the project selection list at the top of the page. In the Select a resource window that appears, select a project. Note the project ID displayed in the Project info section.
+3. Replace the placeholder in LMM.py (Line 115);
 
 # Dataset preparation
 
