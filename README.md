@@ -25,6 +25,14 @@ Note that you need a Google cloud project for this.
 4. If you're developing locally or on Colab (not on GCP instances), you need to authenticate by following this [instruction](https://cloud.google.com/vertex-ai/generative-ai/docs/multimodal/sdk-for-gemini/gemini-sdk-overview-reference#authenticate-vertex-python-sdk).
 
 # Dataset preparation
+Prepare two pandas dataframe: one for demonstrating set and one for test set. You can find examples under dataset/ folder. Note that the index column should contain the filenames of the images. Here's a quick preview: 
+
+| Index | Forest | Golf course | Freeway |
+|:-------------|:--------------:|:--------------:|:--------------:|
+|forest39.jpeg| 1 | 0 | 0 |
+|golfcourse53.jpeg| 0 | 1 | 0 |
+|freeway97.jpeg| 0 | 0 | 1 |
+
 
 # Configure the prompt
 
