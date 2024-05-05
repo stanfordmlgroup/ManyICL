@@ -2,3 +2,4 @@ google-cloud-aiplatform
 openai
 numpy
 pandas
+Pillow
