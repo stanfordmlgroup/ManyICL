@@ -1,7 +1,9 @@
 # ManyICL: Scaling In-Context Learning for Multimodal Foundation Models
 
 
-This repository contains implementation of [ManyICL](https://arxiv.org/abs/XXX). 
+This repository contains implementation of [ManyICL](https://arxiv.org/abs/XXX). Prepare a dataframe, configure your API key, modify the prompt and just run it!
+
+Please note that this code repo is intended for research purpose, and might not be suitable for large-scale production.
 
 
 # Installation
