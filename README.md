@@ -40,18 +40,18 @@ Note that we only include 42 images in UCMerced dataset for illustration purpose
 ManyICL/
 ├── LMM.py
 ├── dataset
-│   ├── UCMerced_21
-│   │   ├── forest39.jpeg
-│   │   ├── forest47.jpeg
-│   │   ├── freeway09.jpeg
-│   │   ├── freeway97.jpeg
-│   │   ├── golfcourse53.jpeg
-│   │   ├── golfcourse76.jpeg
-│   │   ├── ...
-│   ├── UCMerced_demo_21.pkl
-│   └── UCMerced_test_21.pkl
-├── exp_ucmerced.py
-└── prompt.py
+│   └── UCMerced
+│       ├── demo.csv
+│       ├── test.csv
+│       ├── images
+│       │   ├── forest39.jpeg
+│       │   ├── forest47.jpeg
+│       │   ├── freeway09.jpeg
+│       │   ├── freeway97.jpeg
+│       │   ├── ...
+├── prompt.py
+└── run.py
+
 ```
 
 # Configure the prompt
@@ -61,7 +61,7 @@ Modify the prompt in prompt.py if needed.
 # Run the experiment
 Run the experiment script, and it'll save all the raw responses in UCMerced_21shot_Gemini1.5_1.pkl.
 ```bash
-python3 exp_ucmerced.py --num_shot_per_class=1
+python3 ManyICL/run.py --dataset=UCMerced --num_shot_per_class=1
 ```
 
 # Citation
