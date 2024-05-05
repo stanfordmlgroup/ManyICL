@@ -34,6 +34,8 @@ Prepare two pandas dataframe: one for demonstrating set and one for test set. Yo
 |freeway97.jpeg| 0 | 0 | 1 |
 
 ## Expected directory structure
+Note that we only include 42 images in UCMerced dataset for illustration purpose. 
+
 ```
 ManyICL/
 ├── LMM.py
