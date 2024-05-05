@@ -101,9 +101,6 @@ class GPT4VAPI():
         else:
             return response
 
-
-#image = Part.from_uri("gs://cloud-samples-data/ai-platform/flowers/daisy/10559679065_50d2b16f6d.jpg", mime_type="image/jpeg")
-
 class GeminiAPI():
     def __init__(self, model="gemini-1.5-pro-preview-0409", img_token = '<<IMG>>', TPM = 10000, RPM=5, RPD = 500, seed=66, temperature=0, stats_loc='api_usage.pkl', save_folder = 'Gemini1.5_response/', location="us-central1"):
         self.model = model
