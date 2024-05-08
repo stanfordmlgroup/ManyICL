@@ -64,7 +64,7 @@ Modify the prompt in prompt.py if needed.
 # Run the experiment
 Run the experiment script, and it'll save all the raw responses in UCMerced_21shot_Gemini1.5_1.pkl.
 ```bash
-python3 ManyICL/run.py --dataset=UCMerced --num_shot_per_class=1
+python3 ManyICL/run.py --dataset=UCMerced --num_shot_per_class=1 --num_qns_per_round=3
 ```
 
 # Citation
