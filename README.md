@@ -72,13 +72,7 @@ python3 ManyICL/run.py --dataset=UCMerced --num_shot_per_class=1 --num_qns_per_r
 If you find our work useful in your research please consider citing:
 
 ```
-@inproceedings{
-Luo2023closerlook,
-title={A Closer Look at Few-shot Classification Again},
-author={Luo, Xu and Wu, Hao and Zhang, Ji and Gao, Lianli and Xu, Jing and Song, Jingkuan},
-booktitle={International Conference on Machine Learning},
-year={2023},
-}
+TBD
 ```
 
 ## Acknowlegements
