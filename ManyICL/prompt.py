@@ -7,6 +7,22 @@ import numpy as np
 from LMM import GPT4VAPI, GeminiAPI
 
 def work(model, num_shot_per_class, location, num_qns_per_round, test_df, demo_df, classes, class_desp, SAVE_FOLDER, dataset_name, detail='auto', file_suffix=''):
+    """
+    Run queries for each test case in the test_df dataframe using demonstrating examples sampled from demo_df dataframe.
+    
+    model[str]: the specific model checkpoint to use e.g. "Gemini1.5", "gpt-4-turbo-2024-04-09"
+    num_shot_per_class[int]: number of demonstrating examples to include for each class, so the total number of demo examples equals num_shot_per_class*len(classes)
+    location[str]: Vertex AI location e.g. "us-central1","us-west1", not used for GPT-series models
+    num_qns_per_round[int]: number of queries to be batched in one API call
+    test_df, demo_df [pandas dataframe]: dataframe for test cases and demo cases, see dataset/UCMerced/demo.csv as an example
+    classes[list of str]: names of categories for classification, and this should match tbe columns of test_df and demo_df. 
+    class_desp[list of str]: category descriptions for classification, and these are the actual options sent to the model
+    SAVE_FOLDER[str]: path for the images
+    dataset_name[str]: name of the dataset used
+    detail[str]: resolution level for GPT4(V)-series models, not used for Gemini models
+    file_suffix: suffix for image filenames if not included in indexes of test_df and demo_df. e.g. ".png"
+    """
+    
     class_to_idx = {class_name: idx for idx, class_name in enumerate(classes)}
     EXP_NAME = f'{dataset_name}_{num_shot_per_class*len(classes)}shot_{model}_{num_qns_per_round}'
     
@@ -17,7 +33,7 @@ def work(model, num_shot_per_class, location, num_qns_per_round, test_df, demo_d
         api = GeminiAPI(location=location)
     print(EXP_NAME, f'test size = {len(test_df)}')
     
-    
+    # Prepare the demonstrating examples
     demo_examples = []
     for class_name in classes:
         num_cases_class = 0
@@ -26,9 +42,9 @@ def work(model, num_shot_per_class, location, num_qns_per_round, test_df, demo_d
                 break
             demo_examples.append((j.Index, class_desp[class_to_idx[class_name]]))
             num_cases_class += 1
-    
     assert len(demo_examples) == num_shot_per_class*len(classes)
-    
+
+    #Load existing results
     if os.path.isfile(f'{EXP_NAME}.pkl'):
         with open(f'{EXP_NAME}.pkl', 'rb') as f:
             results = pickle.load(f)
@@ -88,6 +104,8 @@ Do not deviate from the above format. Repeat the format template for the answer.
                 
             print(res)
             results[qns_id] = res
+
+    #Update token usage and save the results
     previous_usage = results.get('token_usage', (0,0,0))
     total_usage = tuple(a + b for a, b in zip(previous_usage, api.token_usage))
     results['token_usage'] = total_usage
