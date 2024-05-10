@@ -20,7 +20,7 @@ def work(model, num_shot_per_class, location, num_qns_per_round, test_df, demo_d
     SAVE_FOLDER[str]: path for the images
     dataset_name[str]: name of the dataset used
     detail[str]: resolution level for GPT4(V)-series models, not used for Gemini models
-    file_suffix: suffix for image filenames if not included in indexes of test_df and demo_df. e.g. ".png"
+    file_suffix[str]: suffix for image filenames if not included in indexes of test_df and demo_df. e.g. ".png"
     """
     
     class_to_idx = {class_name: idx for idx, class_name in enumerate(classes)}
