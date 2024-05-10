@@ -17,20 +17,24 @@ import vertexai.preview.generative_models as generative_models
 
 
 class GPT4VAPI():
-    def __init__(self, model='gpt-4-turbo-2024-04-09', img_token = '<<IMG>>', seed=66, temperature=0, stats_loc='api_usage.pkl', save_folder = 'GPT4V_response/', detail='low'):
+    def __init__(self, model='gpt-4-turbo-2024-04-09', img_token = '<<IMG>>', seed=66, temperature=0, detail='auto'):
+        """
+        Class for API calls to GPT-series models
+
+        model[str]: the specific model checkpoint to use e.g. "gpt-4-turbo-2024-04-09"
+        img_token[str]: string to be replaced with images
+        seed[int]: seed for generation
+        temperature[int]: temperature for generation
+        detail[str]: resolution for images. Should be in ['low', 'high', 'auto'].
+        """
+        
         self.model = model
         self.img_token = img_token
         self.seed = seed
         self.temperature = temperature
-        self.save_folder = save_folder
         self.detail = detail
-        os.makedirs(save_folder, exist_ok=True)
         self.client = OpenAI(api_key="YOUR_OPENAI_API_KEY_HERE")
-        if os.path.isfile(stats_loc):
-            with open(stats_loc, 'rb') as f:
-                self.token_usage = pickle.load(f)
-        else:
-            self.token_usage = (0, 0, 0) #completion_tokens=38, prompt_tokens=195, total_tokens=233
+        self.token_usage = (0, 0, 0)
         self.response_times = []
         
     def generate_image_url(self, image_path, detail='low'):
@@ -58,6 +62,9 @@ class GPT4VAPI():
         }
     
     def __call__(self, prompt, image_paths = [], real_call=True, count_time=False, max_tokens = 50, content_only = True):
+        """
+        Call the API to get the response for given prompt and images
+        """
         if not isinstance(image_paths, list): #For single file
             image_paths = [image_paths]
         prompt = prompt.split(self.img_token)
@@ -88,26 +95,29 @@ class GPT4VAPI():
         self.response_times.append(end_time - start_time)
 
         results = [prompt, image_paths, response, end_time-start_time]
-        with open(os.path.join(self.save_folder, str(uuid.uuid1())+'.pkl'), 'wb') as f:
-            pickle.dump(results, f)
 
-        try:
-            self.token_usage = (self.token_usage[0]+response.usage.completion_tokens, self.token_usage[1]+response.usage.prompt_tokens, self.token_usage[2]+response.usage.total_tokens)
-        except:
-            pass
+        self.token_usage = (self.token_usage[0]+response.usage.completion_tokens, self.token_usage[1]+response.usage.prompt_tokens, self.token_usage[2]+response.usage.total_tokens)
+        
         if content_only:
             return response.choices[0].message.content
         else:
             return response
 
 class GeminiAPI():
-    def __init__(self, model="gemini-1.5-pro-preview-0409", img_token = '<<IMG>>', RPM=5, seed=66, temperature=0, stats_loc='api_usage.pkl', save_folder = 'Gemini1.5_response/', location="us-central1"):
+    def __init__(self, model="gemini-1.5-pro-preview-0409", img_token = '<<IMG>>', RPM=5, temperature=0, location="us-central1"):
+        """
+        Class for API calls to Gemini-series models
+
+        model[str]: the specific model checkpoint to use e.g. "gemini-1.5-pro-preview-0409"
+        img_token[str]: string to be replaced with images
+        RPM[int]: quota for maximum number of requests per minute
+        temperature[int]: temperature for generation
+        location[str]: Vertex AI location e.g. "us-central1","us-west1"
+        """
+        
         self.model = model
         self.img_token = img_token
-        self.seed = seed
         self.temperature = temperature
-        self.save_folder = save_folder
-        os.makedirs(save_folder, exist_ok=True)
         vertexai.init(project="YOUR_GCP_PROJECT_ID_HERE", location=location)
         self.client = GenerativeModel(model)
 
@@ -117,11 +127,7 @@ class GeminiAPI():
             generative_models.HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: generative_models.HarmBlockThreshold.BLOCK_ONLY_HIGH,
             generative_models.HarmCategory.HARM_CATEGORY_HARASSMENT: generative_models.HarmBlockThreshold.BLOCK_ONLY_HIGH,
         }
-        if os.path.isfile(stats_loc):
-            with open(stats_loc, 'rb') as f:
-                self.token_usage = pickle.load(f)
-        else:
-            self.token_usage = (0, 0, 0) #completion_tokens=38, prompt_tokens=195, total_tokens=233
+        self.token_usage = (0, 0, 0)
         
         self.response_times = []
         self.last_time = None
@@ -137,7 +143,11 @@ class GeminiAPI():
         return image1
     
     def __call__(self, prompt, image_paths = [], real_call=True, max_tokens = 50, content_only = True):
-        if self.last_time is not None:
+        """
+        Call the API to get the response for given prompt and images
+        """
+        
+        if self.last_time is not None: #Enforce RPM
             # Calculate how much time the loop took
             end_time = time.time()
             elapsed_time = end_time - self.last_time
@@ -173,8 +183,7 @@ class GeminiAPI():
         self.response_times.append(end_time - start_time)
         
         results = [prompt, image_paths, responses, end_time-start_time]
-        with open(os.path.join(self.save_folder, str(uuid.uuid1())+'.pkl'), 'wb') as f:
-            pickle.dump(results, f)
+
 
         try:
             usage = responses._raw_response.usage_metadata
