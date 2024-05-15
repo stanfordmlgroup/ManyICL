@@ -76,3 +76,4 @@ TBD
 ```
 
 ## Acknowlegements
+We thank Dr. Jeff Dean, Yuhui Zhang, Dr. Mutallip Anwar, Kefan Dong, Rishi Bommasani, Ravi B. Sojitra, Chen Shani and Annie Chen for their feedback on the ideas and manuscript. 
