@@ -1,4 +1,4 @@
-# ManyICL: Scaling In-Context Learning for Multimodal Foundation Models
+# ManyICL: Many-Shot In-Context Learning in Multimodal Foundation Models
 
 <p>
     <a href='https://arxiv.org/abs/2404.09797' target="_blank"><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a>
