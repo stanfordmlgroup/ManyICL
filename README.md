@@ -18,17 +18,17 @@ $ pip install -r requirements.txt
 # Setup API keys
 ## For GPT-series models offered by OpenAI
 1. Get your API key from [here](https://platform.openai.com/api-keys);
-2. Replace the placeholder in ManyICL/LMM.py (Line 36);
+2. Replace the placeholder in `ManyICL/LMM.py` (Line 36);
 
 ## For Gemini-series models offered by Vertex AI
 Note that you need a Google cloud project for this. 
 1. In the Google Cloud console, go to the [Dashboard](https://console.cloud.google.com/home).
 2. Click the project selection list at the top of the page. In the Select a resource window that appears, select a project. Note the project ID displayed in the Project info section.
-3. Replace the placeholder in ManyICL/LMM.py (Line 121);
+3. Replace the placeholder in `ManyICL/LMM.py` (Line 121);
 4. If you're developing locally or on Colab (not on GCP instances), you need to authenticate by following this [instruction](https://cloud.google.com/vertex-ai/generative-ai/docs/multimodal/sdk-for-gemini/gemini-sdk-overview-reference#authenticate-vertex-python-sdk).
 
 # Dataset preparation
-Prepare two pandas dataframe: one for demonstrating set and one for test set. You can find examples under dataset/ folder. Note that the index column should contain the filenames of the images. Here's a quick preview: 
+Prepare two pandas dataframe: one for the demonstration set and one for the test set. You can find examples under the `dataset/` folder. Note that the index column should contain the filenames of the images. Here's a quick preview: 
 
 | Index | Forest | Golf course | Freeway |
 |:-------------|:--------------:|:--------------:|:--------------:|
@@ -37,7 +37,7 @@ Prepare two pandas dataframe: one for demonstrating set and one for test set. Yo
 |freeway97.jpeg| 0 | 0 | 1 |
 
 ## Expected directory structure
-Note that we only include 42 images in UCMerced dataset for illustration purpose. 
+Note that we only include 42 images in UCMerced dataset for illustration purposes. 
 
 ```
 ManyICL/
@@ -59,10 +59,10 @@ ManyICL/
 
 # Configure the prompt
 
-Modify the prompt in prompt.py if needed.
+Modify the prompt in `prompt.py` if needed.
 
 # Run the experiment
-Run the experiment script, and it'll save all the raw responses in UCMerced_21shot_Gemini1.5_1.pkl.
+Run the experiment script, and it'll save all the raw responses in `UCMerced_21shot_Gemini1.5_1.pkl`.
 ```bash
 python3 ManyICL/run.py --dataset=UCMerced --num_shot_per_class=1 --num_qns_per_round=3
 ```
