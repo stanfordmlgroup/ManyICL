@@ -15,6 +15,8 @@ import vertexai
 from vertexai.generative_models import GenerativeModel, Part, FinishReason
 import vertexai.preview.generative_models as generative_models
 
+openai_api_key = "YOUR_OPENAI_API_KEY_HERE"
+gcp_project_id = "YOUR_GCP_PROJECT_ID_HERE"
 
 class GPT4VAPI():
     def __init__(self, model='gpt-4o-2024-05-13', img_token = '<<IMG>>', seed=66, temperature=0, detail='auto'):
@@ -33,7 +35,7 @@ class GPT4VAPI():
         self.seed = seed
         self.temperature = temperature
         self.detail = detail
-        self.client = OpenAI(api_key="YOUR_OPENAI_API_KEY_HERE")
+        self.client = OpenAI(api_key=openai_api_key)
         self.token_usage = (0, 0, 0)
         self.response_times = []
         
@@ -118,7 +120,7 @@ class GeminiAPI():
         self.model = model
         self.img_token = img_token
         self.temperature = temperature
-        vertexai.init(project="YOUR_GCP_PROJECT_ID_HERE", location=location)
+        vertexai.init(project=gcp_project_id, location=location)
         self.client = GenerativeModel(model)
 
         self.safety_settings = {
