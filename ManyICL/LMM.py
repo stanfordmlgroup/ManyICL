@@ -1,3 +1,7 @@
+#Placeholders
+openai_api_key = "YOUR_OPENAI_API_KEY_HERE"
+gcp_project_id = "YOUR_GCP_PROJECT_ID_HERE"
+
 import base64
 import time
 import pickle
@@ -14,9 +18,6 @@ from openai import OpenAI
 import vertexai
 from vertexai.generative_models import GenerativeModel, Part, FinishReason
 import vertexai.preview.generative_models as generative_models
-
-openai_api_key = "YOUR_OPENAI_API_KEY_HERE"
-gcp_project_id = "YOUR_GCP_PROJECT_ID_HERE"
 
 class GPT4VAPI():
     def __init__(self, model='gpt-4o-2024-05-13', img_token = '<<IMG>>', seed=66, temperature=0, detail='auto'):
