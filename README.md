@@ -1,7 +1,7 @@
 # ManyICL: Many-Shot In-Context Learning in Multimodal Foundation Models
 
 <p>
-    <a href='https://arxiv.org/abs/2404.09797](https://arxiv.org/abs/2405.09798)' target="_blank"><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a>
+    <a href='https://arxiv.org/abs/2405.09798' target="_blank"><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a>
 </p>
 
 This repository contains implementation of [ManyICL](https://arxiv.org/abs/2405.09798). Prepare a dataframe, configure your API key, modify the prompt and just run it!
