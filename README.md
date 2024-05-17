@@ -1,10 +1,10 @@
 # ManyICL: Many-Shot In-Context Learning in Multimodal Foundation Models
 
 <p>
-    <a href='https://arxiv.org/abs/2404.09797' target="_blank"><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a>
+    <a href='https://arxiv.org/abs/2404.09797](https://arxiv.org/abs/2405.09798)' target="_blank"><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a>
 </p>
 
-This repository contains implementation of [ManyICL](https://arxiv.org/abs/XXX). Prepare a dataframe, configure your API key, modify the prompt and just run it!
+This repository contains implementation of [ManyICL](https://arxiv.org/abs/2405.09798). Prepare a dataframe, configure your API key, modify the prompt and just run it!
 
 Please note that this code repo is intended for research purpose, and might not be suitable for large-scale production.
 
@@ -72,7 +72,14 @@ python3 ManyICL/run.py --dataset=UCMerced --num_shot_per_class=1 --num_qns_per_r
 If you find our work useful in your research please consider citing:
 
 ```
-TBD
+@misc{jiang2024manyshot,
+      title={Many-Shot In-Context Learning in Multimodal Foundation Models}, 
+      author={Yixing Jiang and Jeremy Irvin and Ji Hun Wang and Muhammad Ahmed Chaudhry and Jonathan H. Chen and Andrew Y. Ng},
+      year={2024},
+      eprint={2405.09798},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG}
+}
 ```
 
 ## Acknowlegements
