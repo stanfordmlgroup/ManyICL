@@ -62,15 +62,15 @@ ManyICL/
 Modify the prompt in `prompt.py` if needed.
 
 # Run the experiment
-Run the experiment script, and it'll save all the raw responses in `UCMerced_21shot_Gemini1.5_3.pkl`.
+Run the experiment script, and it'll save all the raw responses in `UCMerced_21shot_Gemini1.5_7.pkl`.
 ```bash
-python3 ManyICL/run.py --dataset=UCMerced --num_shot_per_class=1 --num_qns_per_round=3
+python3 ManyICL/run.py --dataset=UCMerced --num_shot_per_class=1 --num_qns_per_round=7
 ```
 
 # Evaluate the model responses
 Run the evaluation script, and it'll read from the raw responses and print out the accuracy score.
 ```bash
-python3 ManyICL/eval.py --dataset=UCMerced --num_shot_per_class=1 --num_qns_per_round=3
+python3 ManyICL/eval.py --dataset=UCMerced --num_shot_per_class=1 --num_qns_per_round=7
 ```
 
 # Citation
