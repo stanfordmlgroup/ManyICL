@@ -67,6 +67,12 @@ Run the experiment script, and it'll save all the raw responses in `UCMerced_21s
 python3 ManyICL/run.py --dataset=UCMerced --num_shot_per_class=1 --num_qns_per_round=3
 ```
 
+# Evaluate the model responses
+Run the evaluation script, and it'll read from the raw responses and print out the accuracy score.
+```bash
+python3 ManyICL/eval.py --dataset=UCMerced --num_shot_per_class=1 --num_qns_per_round=3
+```
+
 # Citation
 
 If you find our work useful in your research please consider citing:
