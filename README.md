@@ -25,7 +25,7 @@ Note that you need a Google cloud project for this.
 1. In the Google Cloud console, go to the [Dashboard](https://console.cloud.google.com/home).
 2. Click the project selection list at the top of the page. In the Select a resource window that appears, select a project. Note the project ID displayed in the Project info section.
 3. Replace the placeholder in `ManyICL/LMM.py` (Line 3);
-4. If you're developing locally or on Colab (not on GCP instances), you need to authenticate by following this [instruction](https://cloud.google.com/vertex-ai/generative-ai/docs/multimodal/sdk-for-gemini/gemini-sdk-overview-reference#authenticate-vertex-python-sdk).
+4. If you're developing locally or on Colab (not on GCP instances), you need to authenticate by following this [instruction](https://googleapis.dev/python/google-api-core/latest/auth.html).
 
 # Dataset preparation
 Prepare two pandas dataframe: one for the demonstration set and one for the test set. You can find examples under the `dataset/` folder. Note that the index column should contain the filenames of the images. Here's a quick preview: 
